@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz 5to Aniversario</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    margin-top: 20px;
+    color: #d63384;
+    z-index:2;
+    position:relative;
+  }
+
+  .photo-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 30px;
+    z-index:2;
+  }
+
+  .foto {
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ramo {
+    position: absolute;
+    top: 50%;
+    width: 120px;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .ramo.left { left: -140px; }
+  .ramo.right { right: -140px; }
+
+  .message {
+    max-width: 600px;
+    margin: 20px auto 0;
+    font-size: 1.3em;
+    font-weight: 300;
+    line-height: 1.6em;
+    font-family: 'Playfair Display', serif;
+    color: #555;
+    position: relative;
+    z-index: 2;
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 1em;
+    color: #999;
+    position: relative;
+    z-index:2;
+  }
+
+  /* flores cayendo */
+  .flower {
+    position: absolute;
+    width: 50px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* confeti morado */
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #8a2be2;
+    z-index:1;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 700px){
+    .ramo.left, .ramo.right { display: none; }
+    .foto { max-width: 90%; }
+    .message { width: 90%; font-size: 1.1em; }
+    .flower { width: 35px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Feliz 5to Aniversario, amor mío</h1>
+
+<div class="photo-container">
+    <img src="ramo.png" alt="Ramo de flores" class="ramo left">
+    <img src="foto.jpg" alt="Nuestra foto juntos" class="foto">
+    <img src="ramo.png" alt="Ramo de flores" class="ramo right">
+</div>
+
+<div class="message">
+  Hace 5 meses nuestra relación comenzó, y toda una eternidad durará,<br>
+  hasta que el sol deje de brillar, hasta que tus ojos, dejen de ser hermosos.<br>
+  Jamás se acabará, te amo y te amaré por siempre.<br>
+  Besos.
+</div>
+
+<footer>
+  Con todo mi amor, para ti ❤️
+</footer>
+
+<!-- flores cayendo -->
+<img src="gerberamorada.png" class="flower" id="flower1">
+<img src="gerberamorada.png" class="flower" id="flower2">
+<img src="gerberamorada.png" class="flower" id="flower3">
+<img src="gerberamorada.png" class="flower" id="flower4">
+<img src="gerberamorada.png" class="flower" id="flower5">
+<img src="gerberamorada.png" class="flower" id="flower6">
+
+<script>
+  const flowers = [
+    document.getElementById('flower1'),
+    document.getElementById('flower2'),
+    document.getElementById('flower3'),
+    document.getElementById('flower4'),
+    document.getElementById('flower5'),
+    document.getElementById('flower6')
+  ];
+
+  const confettiCount = 30;
+  const confetti = [];
+
+  // crear confeti
+  for(let i=0;i<confettiCount;i++){
+    const c = document.createElement('div');
+    c.classList.add('confetti');
+    c.style.left = Math.random()*window.innerWidth+'px';
+    c.style.top = Math.random()*-window.innerHeight+'px';
+    c.speed = 1 + Math.random()*2;
+    c.angle = Math.random()*Math.PI*2;
+    c.vx = Math.sin(c.angle)*c.speed;
+    c.vy = Math.cos(c.angle)*c.speed + 1;
+    document.body.appendChild(c);
+    confetti.push(c);
+  }
+
+  function animate(){
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // flores cayendo
+    flowers.forEach((f)=>{
+      if(!f.speed) f.speed = 1+Math.random()*1.5;
+      if(!f.x) f.x = Math.random()*width;
+      if(!f.y) f.y = Math.random()*-height;
+      f.y += f.speed;
+      f.style.left = f.x + 'px';
+      f.style.top = f.y + 'px';
+      if(f.y > height){
+        f.y = -50;
+        f.x = Math.random()*width;
+      }
+    });
+
+    // confeti
+    confetti.forEach(c=>{
+      let top = parseFloat(c.style.top);
+      let left = parseFloat(c.style.left);
+      top += c.vy;
+      left += c.vx;
+      c.style.top = top + 'px';
+      c.style.left = left + 'px';
+      if(top > height) c.style.top = -10 + 'px';
+      if(left > width) c.style.left = Math.random()*width + 'px';
+      if(left < 0) c.style.left = Math.random()*width + 'px';
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
