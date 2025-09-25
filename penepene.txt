@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Feliz 5to Aniversario</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+        font-family: 'Playfair Display', serif;
+        text-align: center;
+        color: #333;
+    }
+
+    .photo-container {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px;
+    }
+
+    .foto {
+        max-width: 400px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        display: block;
+        margin: 0 auto;
+    }
+
+    .ramo {
+        position: absolute;
+        top: 50%;
+        width: 120px;
+        transform: translateY(-50%);
+    }
+
+    .ramo.left {
+        left: -140px;
+    }
+
+    .ramo.right {
+        right: -140px;
+    }
+
+    .message {
+        max-width: 600px;
+        margin: 20px auto 0;
+        font-size: 1.3em;
+        font-weight: 300;
+        line-height: 1.6em;
+        font-family: 'Playfair Display', serif;
+        color: #555;
+    }
+
+    h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3em;
+        margin-top: 0;
+        color: #d63384;
+    }
+
+    footer {
+        margin-top: 40px;
+        font-size: 1em;
+        color: #999;
+    }
+
+    @media (max-width: 700px){
+        .ramo.left, .ramo.right {
+            display: none;
+        }
+        .foto {
+            max-width: 90%;
+        }
+        .message {
+            width: 90%;
+            font-size: 1.1em;
+        }
+    }
+</style>
+</head>
+<body>
+
+<h1>Feliz 5to Aniversario, amor mío</h1>
+
+<div class="photo-container">
+    <img src="ramo.png" alt="Ramo de flores" class="ramo left">
+    <img src="foto.jpg" alt="Nuestra foto juntos" class="foto">
+    <img src="ramo.png" alt="Ramo de flores" class="ramo right">
+</div>
+
+<div class="message">
+    Hace 5 meses nuestra relación comenzó, y toda una eternidad durará,<br>
+    hasta que el sol deje de brillar, hasta que tus ojos, dejen de ser hermosos.<br>
+    Jamás se acabará, te amo y te amaré por siempre.<br>
+    Besos.
+</div>
+
+<footer>
+    Con todo mi amor, para ti ❤️
+</footer>
+
+</body>
+</html>
