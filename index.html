@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   body {
-    background-color: #ffffff;
+    background-color: #000000; /* fondo negro */
     margin: 0;
     padding: 0;
     font-family: 'Playfair Display', serif;
@@ -33,11 +33,13 @@
   .foto {
     max-width: 400px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
     display: block;
     margin: 0 auto;
     position: relative;
     z-index: 2;
+    width: 90%;
+    max-width: 400px;
   }
 
   .ramo {
@@ -58,9 +60,10 @@
     font-weight: 300;
     line-height: 1.6em;
     font-family: 'Playfair Display', serif;
-    color: #555;
+    color: #ffffff; /* texto blanco */
     position: relative;
     z-index: 2;
+    padding: 0 10px;
   }
 
   footer {
@@ -69,14 +72,6 @@
     color: #999;
     position: relative;
     z-index:2;
-  }
-
-  /* flores cayendo */
-  .flower {
-    position: absolute;
-    width: 50px;
-    z-index: 1;
-    pointer-events: none;
   }
 
   /* confeti morado */
@@ -90,11 +85,11 @@
     opacity: 0.8;
   }
 
+  /* Responsive */
   @media (max-width: 700px){
     .ramo.left, .ramo.right { display: none; }
     .foto { max-width: 90%; }
     .message { width: 90%; font-size: 1.1em; }
-    .flower { width: 35px; }
   }
 </style>
 </head>
@@ -119,28 +114,11 @@
   Con todo mi amor, para ti ❤️
 </footer>
 
-<!-- flores cayendo -->
-<img src="gerberamorada.png" class="flower" id="flower1">
-<img src="gerberamorada.png" class="flower" id="flower2">
-<img src="gerberamorada.png" class="flower" id="flower3">
-<img src="gerberamorada.png" class="flower" id="flower4">
-<img src="gerberamorada.png" class="flower" id="flower5">
-<img src="gerberamorada.png" class="flower" id="flower6">
-
+<!-- Confeti morado -->
 <script>
-  const flowers = [
-    document.getElementById('flower1'),
-    document.getElementById('flower2'),
-    document.getElementById('flower3'),
-    document.getElementById('flower4'),
-    document.getElementById('flower5'),
-    document.getElementById('flower6')
-  ];
-
   const confettiCount = 30;
   const confetti = [];
 
-  // crear confeti
   for(let i=0;i<confettiCount;i++){
     const c = document.createElement('div');
     c.classList.add('confetti');
@@ -158,21 +136,6 @@
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    // flores cayendo
-    flowers.forEach((f)=>{
-      if(!f.speed) f.speed = 1+Math.random()*1.5;
-      if(!f.x) f.x = Math.random()*width;
-      if(!f.y) f.y = Math.random()*-height;
-      f.y += f.speed;
-      f.style.left = f.x + 'px';
-      f.style.top = f.y + 'px';
-      if(f.y > height){
-        f.y = -50;
-        f.x = Math.random()*width;
-      }
-    });
-
-    // confeti
     confetti.forEach(c=>{
       let top = parseFloat(c.style.top);
       let left = parseFloat(c.style.left);
@@ -189,6 +152,15 @@
   }
 
   animate();
+
+  window.addEventListener('resize', () => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    confetti.forEach(c => {
+      c.style.left = Math.random()*w+'px';
+      c.style.top = Math.random()*-h+'px';
+    });
+  });
 </script>
 
 </body>
